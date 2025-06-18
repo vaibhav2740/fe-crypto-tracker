@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Coin.css";
 import { useParams } from "react-router-dom";
 import { CoinContext, Coin } from "../../context/CoinContext";
-import LineChart from "../../components/LineChart/LineChart";
+// import LineChart from "../../components/LineChart/LineChart";
 
 interface CoinData {
   id: string;
@@ -68,9 +68,9 @@ const CoinPage: React.FC = () => {
               </b>
             </p>
           </div>
-          <div className="coin-chart">
-            <LineChart historicalData={historicalData} />
-          </div>
+          {/*<div className="coin-chart">*/}
+          {/*  <LineChart historicalData={historicalData} />*/}
+          {/*</div>*/}
 
           <div className="coin-info">
             <ul>
