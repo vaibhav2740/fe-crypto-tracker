@@ -1,101 +1,90 @@
-import React, { createContext, useEffect, useState, ReactNode } from "react";
-
-export interface Currency {
-    name: string;
-    symbol: string;
-}
+import { createContext, useEffect, useState, ReactNode } from "react";
 
 export interface Coin {
     id: string;
     name: string;
     symbol: string;
     image: string;
-    market_cap_rank: number;
     current_price: number;
-    price_change_percentage_24h: number;
     market_cap: number;
+    market_cap_rank: number;
+    price_change_percentage_24h: number;
 }
 
-interface CoinContextProps {
+interface CoinContextType {
     allCoin: Coin[];
-    currency: Currency;
-    setCurrency: React.Dispatch<React.SetStateAction<Currency>>;
-    API_KEY: string;
     pinnedCoins: Coin[];
     togglePinCoin: (coin: Coin) => void;
     isPinned: (coinId: string) => boolean;
+    API_KEY: string;
 }
 
-export const CoinContext = createContext<CoinContextProps>({} as CoinContextProps);
+export const CoinContext = createContext<CoinContextType | undefined>(undefined);
 
-const CoinContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const API_KEY = "CG-6ejoPj9EsdgrUzvi74pFYJaX";
+interface CoinContextProviderProps {
+    children: ReactNode;
+}
 
+const CoinContextProvider = ({ children }: CoinContextProviderProps) => {
+    const API_KEY = 'CG-6ejoPj9EsdgrUzvi74pFYJaX';
     const [allCoin, setAllCoin] = useState<Coin[]>([]);
     const [pinnedCoins, setPinnedCoins] = useState<Coin[]>([]);
-    const [currency, setCurrency] = useState<Currency>({
-        name: "usd",
-        symbol: "$",
-    });
 
     useEffect(() => {
-        const savedPinnedCoins = localStorage.getItem("pinnedCoins");
+        const savedPinnedCoins = localStorage.getItem('pinnedCoins');
         if (savedPinnedCoins) {
             setPinnedCoins(JSON.parse(savedPinnedCoins));
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("pinnedCoins", JSON.stringify(pinnedCoins));
+        localStorage.setItem('pinnedCoins', JSON.stringify(pinnedCoins));
     }, [pinnedCoins]);
 
     const fetchAllCoin = async () => {
         const options = {
-            method: "GET",
-            headers: { accept: "application/json", "x-cg-demo-api-key": API_KEY },
+            method: 'GET',
+            headers: { accept: 'application/json', 'x-cg-demo-api-key': API_KEY }
         };
 
-        fetch(
-            `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}`,
-            options
-        )
-            .then((response) => response.json())
-            .then((response) => setAllCoin(response))
-            .catch((err) => console.error(err));
-    };
+        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd`, options)
+            .then(response => response.json())
+            .then(response => setAllCoin(response))
+            .catch(err => console.error(err));
+    }
 
     const togglePinCoin = (coin: Coin) => {
-        setPinnedCoins((prevPinned) => {
-            const isAlreadyPinned = prevPinned.some((pinnedCoin) => pinnedCoin.id === coin.id);
+        setPinnedCoins(prevPinned => {
+            const isAlreadyPinned = prevPinned.some(pinnedCoin => pinnedCoin.id === coin.id);
             if (isAlreadyPinned) {
-                return prevPinned.filter((pinnedCoin) => pinnedCoin.id !== coin.id);
+                return prevPinned.filter(pinnedCoin => pinnedCoin.id !== coin.id);
             } else {
                 return [...prevPinned, coin];
             }
         });
-    };
+    }
 
     const isPinned = (coinId: string) => {
-        return pinnedCoins.some((coin) => coin.id === coinId);
-    };
+        return pinnedCoins.some(coin => coin.id === coinId);
+    }
 
     useEffect(() => {
         fetchAllCoin();
-        // eslint-disable-next-line
-    }, [currency]);
+    }, []);
 
-    const contextValue: CoinContextProps = {
+    const contextValue: CoinContextType = {
         allCoin,
-        currency,
-        setCurrency,
-        API_KEY,
         pinnedCoins,
         togglePinCoin,
         isPinned,
-    };
+        API_KEY
+    }
 
-    return <CoinContext.Provider value={contextValue}>{children}</CoinContext.Provider>;
+    return (
+        <CoinContext.Provider value={contextValue}>
+            {children}
+        </CoinContext.Provider>
+    );
 };
 
 export default CoinContextProvider;
-

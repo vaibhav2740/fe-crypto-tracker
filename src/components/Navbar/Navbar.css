@@ -1,10 +1,12 @@
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px 10%;
-    color: #ddd;
-    border-bottom: 2px solid #3c3c3c;
+    color: #fff;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .app-header {
@@ -16,63 +18,13 @@
 .app-header h1 {
     font-size: 28px;
     font-weight: 600;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: max(1vw, 12px);
-}
-
-/* Currency dropdown */
-.navbar select {
-    padding: 8px 15px;
-    border-radius: 6px;
-    border: 2px solid #f7b500; /* yellow border */
-    background: transparent;
-    color: white;
-    font-size: 16px;
-    width: 100%;
-}
-
-.navbar option {
-    background-color: #1d152f; /* dark purple-like bg */
-    color: white;
-}
-
-/* Connect Wallet / Action Button */
-.navbar button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 25px;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #393939;
-    background: #f7b500; /* yellow button */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.navbar button:hover {
-    background: #ffce33; /* brighter yellow on hover */
-}
-
-.navbar button img {
-    width: 13px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #fff;
 }
 
 @media (max-width: 900px) {
     .navbar {
         padding: 20px 8%;
-    }
-
-    .navbar button {
-        gap: 8px;
-        padding: 8px 18px;
-        font-size: 14px;
     }
 }
 
@@ -83,14 +35,7 @@
         gap: 20px;
         align-items: flex-start;
     }
-
     .app-header {
         width: 100%;
     }
-
-    .navbar button img {
-        width: 12px;
-    }
 }
-
-

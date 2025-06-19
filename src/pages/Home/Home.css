@@ -1,20 +1,28 @@
 .home {
     padding: 0px 10px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .hero {
     max-width: 600px;
-    margin: 80px auto;
+    margin: 60px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 30px;
+    gap: 25px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .hero h1 {
     font-size: max(4vw, 36px);
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
@@ -26,13 +34,14 @@
 .hero form {
     padding: 8px;
     width: 80%;
-    background-color: white;
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
     font-size: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero input {
@@ -41,19 +50,27 @@
     outline: none;
     border: none;
     padding-left: 10px;
+    background: transparent;
 }
 
 .hero button {
     border: none;
-    background: #f7b500; /* yellow */
-    color: white;
+    background: linear-gradient(to right, #ffd700, #ffb700);
+    color: #003366;
     font-size: 16px;
+    font-weight: 600;
     padding: 10px 30px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Pinned Section Styles */
+.hero button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
 .pinned-section {
     max-width: 800px;
     margin: 40px auto;
@@ -64,6 +81,7 @@
     margin-bottom: 20px;
     color: #fff;
     font-size: 24px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .all-coins-section {
@@ -76,30 +94,42 @@
     margin-bottom: 20px;
     color: #fff;
     font-size: 24px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .pinned-table {
-    border: 2px solid #f7b500; /* yellow */
-    box-shadow: 0 0 15px rgba(247, 181, 0, 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 .crypto-table {
     max-width: 800px;
     margin: auto;
-    background: linear-gradient(rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.15)); /* yellow gradient */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .table-layout {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 0.5fr;
+    grid-template-columns: 0.5fr 3fr 1fr 0.5fr;
     padding: 15px 20px;
     align-items: center;
-    border-bottom: 1px solid #3c3c3c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
-.market-cap {
-    text-align: right;
+.table-layout:first-child {
+    background: rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.table-layout:not(:first-child):hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
 .table-layout:last-child {
@@ -114,16 +144,13 @@
 
 .table-layout div img {
     width: 35px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px;
 }
 
-.table-layout .green {
-    color: #00D515;
-    text-align: center;
-}
-
-.table-layout .red {
-    color: #ff4646;
-    text-align: center;
+.table-layout p {
+    color: #fff;
 }
 
 /* Pin Button Styles */
@@ -144,49 +171,30 @@
 
 .pin-button.unpinned {
     opacity: 0.6;
+    color: #ffd700;
 }
 
 .pin-button.unpinned:hover {
     opacity: 1;
-    background-color: rgba(247, 181, 0, 0.2); /* yellow */
+    background-color: rgba(255, 215, 0, 0.2);
 }
 
 .pin-button.pinned {
-    background-color: rgba(247, 181, 0, 0.3); /* yellow */
+    background-color: rgba(255, 215, 0, 0.3);
     opacity: 1;
+    color: #ffd700;
 }
 
 .pin-button.pinned:hover {
-    background-color: rgba(255, 165, 0, 0.3); /* slightly deeper yellow/orange */
+    background-color: rgba(255, 100, 100, 0.3);
 }
 
 @media (max-width: 768px) {
     .table-layout {
-        grid-template-columns: 0.5fr 3fr 1fr 1fr 0.5fr;
-    }
-    .market-cap {
-        display: none;
-    }
-}
-
-@media (max-width: 500px) {
-    .table-layout div img {
-        width: 25px;
-    }
-    .table-layout {
-        font-size: 13px;
-        grid-template-columns: 0.5fr 2.5fr 1fr 1fr 0.5fr;
+        grid-template-columns: 0.5fr 2fr 1fr 0.5fr;
+        font-size: 14px;
     }
     .hero form input {
         width: 100px;
     }
-    .pin-button {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-    }
-}
-
-.home {
-    padding-bottom: 50px;
 }

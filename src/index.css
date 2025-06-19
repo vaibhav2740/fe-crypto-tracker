@@ -14,10 +14,6 @@ a {
 
 .app {
     min-height: 100vh;
-    color: white;
-
-    /* Background: keeping the deep space vibe with a subtle cosmic gradient */
-    background: linear-gradient(to bottom right, #0b004e, #1d152f, #002834);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    color: #fff;
+    background: linear-gradient(135deg, #ffd700, #0066ff);
 }
